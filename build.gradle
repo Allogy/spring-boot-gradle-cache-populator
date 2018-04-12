@@ -1,0 +1,97 @@
+buildscript {
+    ext {
+        // This map is by no means official. But it represents a quick
+        // sampling of what our services currently have.
+        bootToCloudMap = [
+                '2.0.1': 'Finchley.M9',
+                '1.5.12' : 'Edgware.SR3',
+                '1.5.11' : 'Edgware.SR2',
+                '1.5.10' : 'Edgware.SR1',
+                '1.5.9' : 'Edgware.SR1',
+                '1.5.7' : 'Dalston.SR4',
+                '1.5.6' : 'Dalston.SR2',
+                '1.5.5' : 'Dalston.SR1',
+                '1.5.4' : 'Dalston.SR1',
+                '1.5.3' : 'Dalston.RELEASE',
+                '1.4.7' : 'Camden.SR6',
+                '1.4.4' : 'Camden.SR4'
+        ]
+        springBootVersion = "${boot}.RELEASE"
+        springCloudVersion = bootToCloudMap[boot]
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.allogy.spring'
+version = '0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    if(isSpringBoot2()) {
+        maven { url "https://repo.spring.io/milestone" }
+    }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-validation')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.flywaydb:flyway-core')
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+    if(isSpringBoot2()) {
+        compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+        compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+        compile('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+        compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+    } else {
+        compile('org.springframework.cloud:spring-cloud-starter-eureka')
+        compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+        compile('org.springframework.cloud:spring-cloud-starter-ribbon')
+        compile('org.springframework.cloud:spring-cloud-starter-zuul')
+    }
+    if(isSpringBoot2()) {
+        compile('org.springframework.session:spring-session-data-redis')
+        compile('org.springframework.session:spring-session-jdbc')
+    } else {
+        compile('org.springframework.session:spring-session')
+    }
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('mysql:mysql-connector-java')
+    runtime('org.postgresql:postgresql')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.security:spring-security-test')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+task springBootGet(dependsOn: ['assemble', 'check'])
+
+def isSpringBoot2() {
+    return springBootVersion.startsWith('2')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
