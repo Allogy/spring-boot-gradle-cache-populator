@@ -2,5 +2,5 @@
 
 for GRADLE_VERSION in "$@"
 do
-    ./gradlew -Pboot=${GRADLE_VERSION} springBootGet
+    ./gradlew --no-daemon -Pboot=${GRADLE_VERSION} springBootGet
 done
