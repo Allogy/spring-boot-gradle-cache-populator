@@ -3,10 +3,12 @@ buildscript {
         // This map is by no means official. But it represents a quick
         // sampling of what our services currently have.
         bootToCloudMap = [
+                '2.0.5': 'Finchley.SR1',
                 '2.0.4': 'Finchley.SR1',
                 '2.0.3': 'Finchley.RELEASE',
                 '2.0.2': 'Finchley.RELEASE',
                 '2.0.1': 'Finchley.RC1',
+                '1.5.16' : 'Edgware.SR4',
                 '1.5.15' : 'Edgware.SR4',
                 '1.5.14' : 'Edgware.SR4',
                 '1.5.13' : 'Edgware.SR3',
@@ -59,6 +61,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-undertow')
+    compile('org.springframework.boot:spring-boot-starter-tomcat')
     compile('org.flywaydb:flyway-core')
     compile('org.springframework.cloud:spring-cloud-starter-config')
     if(isSpringBoot2()) {
@@ -84,6 +88,10 @@ dependencies {
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
+    if(isSpringBoot2()) {
+        testCompile('org.junit.jupiter:junit-jupiter-engine')
+        testCompile('org.junit.jupiter:junit-jupiter-params')
+    }
 }
 
 dependencyManagement {
