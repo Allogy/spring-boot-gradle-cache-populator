@@ -4,6 +4,7 @@ buildscript {
         // sampling of what our services currently have.
         bootToCloudMap = [
                 '2.1.2': 'Greenwich.RC2',
+                '2.0.8': 'Finchley.SR2',
                 '2.0.7': 'Finchley.SR2',
                 '2.0.6': 'Finchley.SR2',
                 '2.0.5': 'Finchley.SR1',
