@@ -111,6 +111,6 @@ def isSpringBoot2() {
     return springBootVersion.startsWith('2')
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.6'
+wrapper {
+    gradleVersion = '4.8.1'
 }
