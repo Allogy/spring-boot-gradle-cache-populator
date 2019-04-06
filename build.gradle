@@ -3,6 +3,8 @@ buildscript {
         // This map is by no means official. But it represents a quick
         // sampling of what our services currently have.
         bootToCloudMap = [
+                '2.1.4': 'Greenwich.SR1',
+                '2.1.3': 'Greenwich.SR1',
                 '2.1.2': 'Greenwich.RELEASE',
                 '2.0.8': 'Finchley.SR2',
                 '2.0.7': 'Finchley.SR2',
