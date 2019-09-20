@@ -112,7 +112,7 @@ dependencyManagement {
     }
 }
 
-task springBootGet(dependsOn: ['assemble', 'check'])
+task springBootGet(dependsOn: ['clean', 'assemble', 'check'])
 
 def isSpringBoot2() {
     return springBootVersion.startsWith('2')
