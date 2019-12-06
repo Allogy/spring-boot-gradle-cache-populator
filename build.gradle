@@ -3,6 +3,9 @@ buildscript {
         // This map is by no means official. But it represents a quick
         // sampling of what our services currently have.
         bootToCloudMap = [
+                '2.1.11': 'Greenwich.SR4',
+                '2.1.10': 'Greenwich.SR3',
+                '2.1.9': 'Greenwich.SR3',
                 '2.1.8': 'Greenwich.SR3',
                 '2.1.7': 'Greenwich.SR2',
                 '2.1.5': 'Greenwich.SR1',
@@ -55,7 +58,7 @@ sourceCompatibility = 1.8
 repositories {
     jcenter()
     if(isSpringBoot2()) {
-        maven { url "https://repo.spring.io/milestone" }
+        maven { url 'https://repo.spring.io/milestone' }
     }
 }
 
