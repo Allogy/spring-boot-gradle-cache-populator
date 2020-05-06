@@ -126,5 +126,5 @@ def isSpringBoot2() {
 }
 
 wrapper {
-    gradleVersion = '5.6.2'
+    gradleVersion = '6.4'
 }
