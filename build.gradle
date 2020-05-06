@@ -3,6 +3,8 @@ buildscript {
         // This map is by no means official. But it represents a quick
         // sampling of what our services currently have.
         bootToCloudMap = [
+                '2.2.6': 'Hoxton.SR3',
+                '2.2.5': 'Hoxton.SR2',
                 '2.2.4': 'Hoxton.SR1',
                 '2.1.12': 'Greenwich.SR4',
                 '2.1.11': 'Greenwich.SR4',
