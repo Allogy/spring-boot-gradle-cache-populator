@@ -28,7 +28,6 @@ buildscript {
                 '2.0.4': 'Finchley.SR1',
                 '2.0.3': 'Finchley.RELEASE',
                 '2.0.2': 'Finchley.RELEASE',
-                '2.0.1': 'Finchley.RC1',
                 '1.5.16' : 'Edgware.SR4',
                 '1.5.15' : 'Edgware.SR4',
                 '1.5.14' : 'Edgware.SR4',
@@ -66,9 +65,6 @@ sourceCompatibility = 1.8
 
 repositories {
     jcenter()
-    if(isSpringBoot2()) {
-        maven { url 'https://repo.spring.io/milestone' }
-    }
 }
 
 dependencies {
